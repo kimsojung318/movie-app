@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config';
-import MainImage from '../LandingPage/Sections/MainImage';
+import MainImage from './Sections/MainImage';
 import GridCards from '../commons/GridCards';
 import { Row } from 'antd';
 
@@ -55,6 +55,7 @@ function LandingPage() {
                         <React.Fragment key={index}>
                             {/* poster_path가 없는 경우 처리 */}
                             <GridCards
+                                landingPage
                                 image={movie.poster_path ?
                                     `${IMAGE_BASE_URL}w500${movie.poster_path}` : null}
                                 movieId={movie.id}
