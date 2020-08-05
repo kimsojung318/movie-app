@@ -16,6 +16,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+// 기재하지 않을 시 모든 서비스의 api를 해당 파일에 넣어줘야한다.
+// app.use('/api/user', require('./routes/users'));
+app.use('/api/favorite', require('./routes/favorite'));
+
 const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI, {
     useNewUrlParser: true, 
