@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'antd';
 import Axios from 'axios';
+import { Button } from 'antd';
+
+import { withRouter } from 'react-router-dom';
 
 function Favorite(props) {
     const movieId = props.movieId;
@@ -24,49 +26,49 @@ function Favorite(props) {
         // Favorite List에 넣은 숫자 정보 얻기 → mongoDB 한테 요청
         // server/routes/favorite.js 한테 요청
         Axios.post('/api/favorite/favoriteNumber', variables)
-        .then(response => {
-            // console.log(response.data)
-            setFavoriteNumber(response.data.favoriteNumber)
-            if(response.data.success){
-            } else{
-                alert('숫자 정보를 가져오지 못했습니다.');
-            }
-        })
+            .then(response => {
+                // console.log(response.data)
+                setFavoriteNumber(response.data.favoriteNumber)
+                if (response.data.success) {
+                } else {
+                    alert('숫자 정보를 가져오지 못했습니다.');
+                }
+            })
 
         Axios.post('/api/favorite/favorited', variables)
-        .then(response => {
-            if(response.data.success){
-                // console.log('favorited', response.data)
-                // favorited {success: true, favorited: false}
+            .then(response => {
+                if (response.data.success) {
+                    // console.log('favorited', response.data)
+                    // favorited {success: true, favorited: false}
 
-                setFavorited(response.data.favorited)
-            } else{
-                alert('정보를 가져오지 못했습니다.');
-            }
-        })
+                    setFavorited(response.data.favorited)
+                } else {
+                    alert('정보를 가져오지 못했습니다.');
+                }
+            })
     }, [])
 
     const onClickFavorite = () => {
-        if(Favorited){
+        if (Favorited) {
             Axios.post('/api/favorite/removeFromFavorite', variables)
-            .then(response => {
-                if(response.data.success){
-                    setFavoriteNumber(FavoriteNumber -1)
-                    setFavorited(!Favorited)
-                } else{
-                    alert('Favorite List 삭제 실패');
-                }
-            })
-        } else{
-            Axios.post('/api/favorite/addToFavorite', variables )
-            .then(response => {
-                if(response.data.success){
-                    setFavoriteNumber(FavoriteNumber +1)
-                    setFavorited(!Favorited)
-                } else{
-                    alert('Favorite List 추가 실패');
-                }
-            })
+                .then(response => {
+                    if (response.data.success) {
+                        setFavoriteNumber(FavoriteNumber - 1)
+                        setFavorited(!Favorited)
+                    } else {
+                        alert('Favorite List 삭제 실패');
+                    }
+                })
+        } else {
+            Axios.post('/api/favorite/addToFavorite', variables)
+                .then(response => {
+                    if (response.data.success) {
+                        setFavoriteNumber(FavoriteNumber + 1)
+                        setFavorited(!Favorited)
+                    } else {
+                        alert('Favorite List 추가 실패');
+                    }
+                })
         }
     }
 
@@ -80,4 +82,4 @@ function Favorite(props) {
     )
 }
 
-export default Favorite
+export default withRouter(Favorite)

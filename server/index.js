@@ -2,11 +2,14 @@ const express = require('express') // express 모듈을 가져온다
 const app = express()
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+//const cors = require('cors')
 
 const config = require("./config/key");
 
 const { auth } = require("./middleware/auth");
 const { User } = require("./models/User");
+
+//app.use(cors())
 
 // bodyParser가 client에서 오는 정보를 서버에서 분석 후 가져올 수 있도록 하기 위해 추가
 // application/x-www-form-urlencoded

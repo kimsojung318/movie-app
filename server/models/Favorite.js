@@ -20,6 +20,6 @@ const favoriteSchema = mongoose.Schema({
     }
 }, { timestamps: true })
 
-const Favorite = mongoose.model('Favorite', favoriteSchema)
+const Favorite = mongoose.model('Favorite', favoriteSchema);
 
 module.exports = { Favorite } // 다른 파일에서도 사용할 수 있도록 설정

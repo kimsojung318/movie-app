@@ -2,8 +2,10 @@ import axios from 'axios';
 import {
     LOGIN_USER,
     REGISTER_USER,
-    AUTH_USER
+    AUTH_USER,
+    LOGOUT_USER
 } from './types';
+import { USER_SERVER } from '../components/Config.js';
 
 export function loginUser(dataToSubmit) { // LoginPage.js body를 파라미터로 받아옴
     // server > index.js에 구현된 로그인 api로 전달 및 데이터 받아오기
@@ -33,6 +35,16 @@ export function auth() { // get은 body 부분 필요X
 
     return {
         type: AUTH_USER,
+        payload: request
+    }
+}
+
+export function logoutUser(){
+    const request = axios.get(`${USER_SERVER}/logout`)
+    .then(response => response.data);
+
+    return {
+        type: LOGOUT_USER,
         payload: request
     }
 }

@@ -14,7 +14,7 @@ export default function (SpecificComponent, option, adminRoute = null){
         useEffect(() => {
             dispatch(auth()).then(response => {
                 // node.js Server에서 정의한 항목이 나타남
-                console.log(response) 
+                //console.log(response) 
 
                 if(!response.payload.isAuth){ // 로그인 하지 않은 상태
                     if(option){ // option : true인 Page를 들어가려고 할 때
