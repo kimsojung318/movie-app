@@ -20,6 +20,7 @@ export default function (state = {}, action) {
             break;
         case LOGOUT_USER:
             return { ...state }
+            break;
         default:
             return state;
     }
